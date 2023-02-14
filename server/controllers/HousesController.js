@@ -32,14 +32,23 @@ export class HousesController extends BaseController{
   }
   async getHouse(req, res, next) {
     try {
-      
+      let houseID = req.params.id
+      let house = await housesService.getHouse(houseID)
+      res.send(house)
     } catch (error) {
       next(error)
     }
   }
 
-  async updateHouse(){
-
+  async updateHouse(req, res, next){
+    try {
+      let houseID = req.params.id
+      let houseData = req.body
+      let house = await housesService.updateHouse(houseID, houseData)
+      res.send(house)
+    } catch (error) {
+      next(error)
+    }
   }
 
   async getHouses(req, res, next){
